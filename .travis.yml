@@ -1,0 +1,8 @@
+sudo: required
+services:
+  - docker
+language:
+  - generic
+
+script:
+  - ./build_cross_aarch64.sh
