@@ -3,6 +3,8 @@ services:
   - docker
 language:
   - generic
-
 script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - ./build_cross_aarch64.sh
+  - docker image tag autoware-kinetic:crossbuild-aarch64 $DOCKER_USERNAME/autoware-kinetic:crossbuild-aarch64
+  - docker push $DOCKER_USERNAME/autoware-kinetic:crossbuild-aarch64
