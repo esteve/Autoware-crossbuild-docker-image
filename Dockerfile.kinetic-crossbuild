@@ -102,7 +102,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     symlinks
-RUN symlinks -crv / && echo "Exit code: $?"
+
+RUN symlinks -crv /lib
+RUN symlinks -crv /usr/include
+RUN symlinks -crv /usr/lib
+RUN symlinks -crv /usr/share/pkgconfig
+RUN symlinks -crv /opt
+RUN symlinks -crv /etc/alternatives
 
 FROM ubuntu:16.04 AS builder
 ARG SYSROOT_ARCH
