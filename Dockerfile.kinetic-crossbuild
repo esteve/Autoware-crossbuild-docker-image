@@ -102,7 +102,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     symlinks
-RUN symlinks -cr /
+RUN symlinks -crv /
 
 FROM ubuntu:16.04 AS builder
 ARG SYSROOT_ARCH
