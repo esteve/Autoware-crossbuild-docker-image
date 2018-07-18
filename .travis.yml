@@ -5,6 +5,9 @@ language:
   - generic
 script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - ./build_cross_aarch64.sh
+  - docker run --rm --privileged multiarch/qemu-user-static:register
+  - docker build -t autoware-kinetic:crossbuild-aarch64 -f Dockerfile.kinetic-crossbuild-aarch64 .
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - docker image ls
   - docker image tag autoware-kinetic:crossbuild-aarch64 $DOCKER_USERNAME/autoware-kinetic:crossbuild-aarch64
   - docker push $DOCKER_USERNAME/autoware-kinetic:crossbuild-aarch64
