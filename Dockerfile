@@ -1,5 +1,5 @@
-ARG DOCKER_ARCH
-ARG SYSROOT_ARCH
+ARG DOCKER_ARCH=arm64v8
+ARG SYSROOT_ARCH=aarch64
 FROM multiarch/alpine:${SYSROOT_ARCH}-latest-stable AS bootstrap
 
 FROM ${DOCKER_ARCH}/ubuntu:16.04 AS sysroot
